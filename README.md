@@ -47,8 +47,17 @@ Example Usage:
 
 ```
 from sls.adam_sls import AdamSLS
-optimizer = AdamSLS( [model.parameters()] )
+optimizer = AdamSLS([model.parameters()])
 ```
+For better performance(not in this paper) use:
+```
+optimizer = AdamSLS([model.parameters()], smooth = True)
+```
+For splitting your network use:
+```
+optimizer = AdamSLS([parameterlistA, parameterlistB, ... etc], smooth = True)
+```
+
 The typical pytorch forward pass needs to be changed from :
 ``` 
 optimizer.zero_grad()
