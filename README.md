@@ -25,7 +25,7 @@ Dependencies:
 
 
 ## Replicating Results
-For replicating all Results of the Paper run:
+For replicating the main Results of the Paper run:
 
 ```
 $ python run_multiple.py
