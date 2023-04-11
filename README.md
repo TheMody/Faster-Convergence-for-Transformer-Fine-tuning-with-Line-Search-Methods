@@ -48,7 +48,7 @@ Example Usage:
 ```
 optimizer = AdamSLS( [model.parameters()] )
 ```
-forward pass needs to be changed from :
+The typical pytorch forward pass needs to be changed from :
 ``` 
 optimizer.zero_grad()
 y_pred = self(batch_x)
@@ -63,3 +63,4 @@ closure = lambda : self.criterion(self(batch_x), batch_y)
 self.optimizer.zero_grad()
 loss = self.optimizer.step(closure = closure)
 ```
+see embedder.py in the fit() method for more details
