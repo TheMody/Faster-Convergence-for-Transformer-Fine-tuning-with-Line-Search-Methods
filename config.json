@@ -1,0 +1,16 @@
+[DEFAULT]
+batch_size = 32
+checkpoint = None
+directory = results/mrpcadamsls1bertlayercycle03
+seed = 42
+epochs = 5
+dataset = mrpcsmall
+optim = adamsls
+num_diff_opt = 10
+model = bert
+split_by = layer
+update_rule = cycle
+combine = 0
+c = 0.1
+cls = transformer
+type = NLP
