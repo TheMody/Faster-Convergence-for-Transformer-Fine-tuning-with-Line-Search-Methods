@@ -51,11 +51,11 @@ optimizer = AdamSLS([model.parameters()])
 ```
 For better performance(not in this paper) use:
 ```
-optimizer = AdamSLS([model.parameters()], smooth = True)
+optimizer = AdamSLS([model.parameters()], smooth = True, c = 0.5)
 ```
 For splitting your network use:
 ```
-optimizer = AdamSLS([parameterlistA, parameterlistB, ... etc], smooth = True)
+optimizer = AdamSLS([parameterlistA, parameterlistB, ... etc], smooth = True, c = 0.5)
 ```
 
 The typical pytorch forward pass needs to be changed from :
