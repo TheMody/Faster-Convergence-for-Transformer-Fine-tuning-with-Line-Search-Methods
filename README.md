@@ -74,3 +74,13 @@ optimizer.zero_grad()
 loss = optimizer.step(closure = closure)
 ```
 see embedder.py in the fit() method for more details
+
+Please cite:
+Faster Convergence for Transformer Fine-tuning
+with Line Search Methods 
+from 
+Philip Kenneweg,
+Leonardo Galli,
+Tristan Kenneweg,
+Barbara Hammer
+To be published in IJCNN 2023
