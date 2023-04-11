@@ -52,16 +52,16 @@ optimizer = AdamSLS( [model.parameters()] )
 The typical pytorch forward pass needs to be changed from :
 ``` 
 optimizer.zero_grad()
-y_pred = self(batch_x)
-loss = self.criterion(y_pred, batch_y)    
+y_pred = model(batch_x)
+loss = criterion(y_pred, batch_y)    
 loss.backward()
-self.optimizer.step()
-self.scheduler.step() 
+optimizer.step()
+scheduler.step() 
 ```
 to:
 ``` 
-closure = lambda : self.criterion(self(batch_x), batch_y)
-self.optimizer.zero_grad()
-loss = self.optimizer.step(closure = closure)
+closure = lambda : criterion(model(batch_x), batch_y)
+optimizer.zero_grad()
+loss = optimizer.step(closure = closure)
 ```
 see embedder.py in the fit() method for more details
