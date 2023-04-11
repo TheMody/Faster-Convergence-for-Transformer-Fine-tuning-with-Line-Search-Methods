@@ -21,11 +21,11 @@ Dependencies:
 - `pip install datasets` for huggingface datasets <3 
 - `pip install tensorflow-datasets` for tensorflow datasets <3 
 - `pip install wandb` for optional logging <3
-- for easy replication just use conda and environment.yml
+- for easy replication use conda and environment.yml
 
 
 ## Replicating Results
-For replicating all Results of the Paper just run:
+For replicating all Results of the Paper run:
 
 ```
 $ python run_multiple.py
@@ -46,6 +46,7 @@ The custom optimizer is in \sls\adam_sls.py and \sls\sls_base.py
 Example Usage:
 
 ```
+from sls.adam_sls import AdamSLS
 optimizer = AdamSLS( [model.parameters()] )
 ```
 The typical pytorch forward pass needs to be changed from :
