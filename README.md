@@ -32,7 +32,7 @@ $ python main.py
 
 and change the config.json file appropriately
 
-## use
+## use in own projects
 
 The custom optimizer is in \sls\adam_sls.py and \sls\sls_base.py 
 Example Usage:
