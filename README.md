@@ -2,6 +2,13 @@
 
 The Repository to the Paper Faster Convergence for Transformer Fine-tuning with Line Search Methods
 
+## Abstract
+
+Recent works have shown that line search methods greatly increase performance of traditional stochastic gradient descent methods on a variety of datasets and architectures. In this work we succeed in extending line search methods to the novel and highly popular Transformer architecture and dataset domains in natural language processing. 
+More specifically, we combine the Armijo line search with the Adam optimizer and extend it by subdividing the networks architecture into sensible units and perform the line search separately on these local units. 
+Our optimization method outperforms the traditional Adam optimizer and achieves significant performance improvements for small data sets or small training budgets, while performing equal or better for other tested cases.
+Our work is publicly available as a python package, which provides a hyperparameter-free pytorch optimizer that is compatible with arbitrary network architectures.
+
 ![Loss Curve](Plots/lossSST2small.png)
 
 ## install
@@ -10,8 +17,9 @@ Dependencies:
 
 - [pytorch](https://pytorch.org) <3
 - [numpy](https://numpy.org/install/) <3
-- `pip install transformers` for huggingface transformers <3 (to load GPT-2 checkpoints)
-- `pip install datasets` for huggingface datasets <3 (if you want to download + preprocess OpenWebText)
+- `pip install transformers` for huggingface transformers <3 
+- `pip install datasets` for huggingface datasets <3 
+- `pip install tensorflow-datasets` for tensorflow datasets <3 
 - `pip install wandb` for optional logging <3
 - for easy replication just use conda and environment.yml
 
