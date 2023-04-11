@@ -33,13 +33,11 @@ def train(args, config):
     args.opts = {"lr": lr, "opt": optimizer}
     args.combine = float(config["DEFAULT"]["combine"])
     args.ds = dataset
-    args.beta = float(config["DEFAULT"]["beta"])
     args.split_by = config["DEFAULT"]["split_by"]
     args.update_rule = config["DEFAULT"]["update_rule"]
     args.model = config["DEFAULT"]["model"]
     args.savepth = config["DEFAULT"]["directory"]
     args.c = float(config["DEFAULT"]["c"])
-    args.o_grad_smooth = config["DEFAULT"]["onlygradientsmoothing"]=="True"
     num_classes = 2
     if "mnli" in dataset:
         num_classes = 3

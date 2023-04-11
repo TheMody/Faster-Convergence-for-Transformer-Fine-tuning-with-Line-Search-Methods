@@ -11,7 +11,6 @@ from copy import deepcopy
 from torch.autograd import variable
 from torch.utils.data import DataLoader
 from data import load_wiki
-import os
 from sls.adam_sls import AdamSLS
 from sls.slsoriginal.adam_sls import AdamSLS as orAdamSLS
 import wandb
@@ -88,10 +87,9 @@ class NLP_embedder(nn.Module):
                                   #  print(name, param.requires_grad, param.grad)
                     pparamalist.append(paramlist)
                 if args.opts["opt"] == "adamsls":  
-                    self.optimizer = AdamSLS(pparamalist,strategy = args.update_rule , combine_threshold = args.combine, c = self.args.c, o_grad_smooth=self.args.o_grad_smooth)
+                    self.optimizer = AdamSLS(pparamalist,strategy = args.update_rule , combine_threshold = args.combine, c = self.args.c,  smooth=False)
                 if args.opts["opt"] == "sgdsls":  
-                    self.optimizer = AdamSLS( pparamalist,strategy = args.update_rule, combine_threshold = args.combine, base_opt = "scalar",gv_option = "scalar" , c = self.args.c, o_grad_smooth=self.args.o_grad_smooth)
-                 #   self.optimizer.append(SgdSLS(pparamalist ))
+                    self.optimizer = AdamSLS( pparamalist,strategy = args.update_rule, combine_threshold = args.combine, base_opt = "scalar",gv_option = "scalar" , c = self.args.c, smooth=False)
             else:
                 if args.opts["opt"] == "adam":    
                     self.optimizer = optim.Adam(self.parameters(), lr=args.opts["lr"] )
@@ -100,13 +98,13 @@ class NLP_embedder(nn.Module):
                 if args.opts["opt"] == "sgd":    
                     self.optimizer = optim.SGD(self.parameters(), lr=args.opts["lr"] )
                 if args.opts["opt"] == "adamsls":    
-                    self.optimizer = AdamSLS( [[param for name,param in self.named_parameters() if not "pooler" in name]] , c = self.args.c, beta_s = self.args.beta, o_grad_smooth=self.args.o_grad_smooth)
+                    self.optimizer = AdamSLS( [[param for name,param in self.named_parameters() if not "pooler" in name]] , c = self.args.c,   smooth=False)
                 if args.opts["opt"] == "oladamsls":    
                     self.optimizer = AdamSLS( [[param for name,param in self.named_parameters() if not "pooler" in name]] , c = self.args.c, smooth=False)
                 if args.opts["opt"] == "amsgradsls":    
                     self.optimizer = orAdamSLS( [param for name,param in self.named_parameters() if not "pooler" in name] ,base_opt = "amsgrad", c = 0.1)
                 if args.opts["opt"] == "sgdsls":    
-                    self.optimizer = AdamSLS( [[param for name,param in self.named_parameters() if not "pooler" in name]], base_opt = "scalar",gv_option = "scalar", c = self.args.c , beta_s = self.args.beta, o_grad_smooth=self.args.o_grad_smooth)
+                    self.optimizer = AdamSLS( [[param for name,param in self.named_parameters() if not "pooler" in name]], base_opt = "scalar",gv_option = "scalar", c = self.args.c ,  smooth=False)
         else:
             querylist = []
             keylist = []
@@ -139,10 +137,10 @@ class NLP_embedder(nn.Module):
     
      
     def fit(self, x, y, epochs=1, X_val= None,Y_val= None):
-        wandb.init(project="SLSforDifferentLayers"+self.args.ds, name = self.args.split_by + "_" + self.args.opts["opt"] + "_" + self.args.model +
+        wandb.init(project="PLASLS"+self.args.ds, name = self.args.split_by + "_" + self.args.opts["opt"] + "_" + self.args.model +
             "_" + str(self.args.number_of_diff_lrs) +"_"+ self.args.savepth, entity="pkenneweg", 
-            group = "avgarmijo_momentum_"+self.args.split_by + "_" + self.args.opts["opt"] + "_" + self.args.model +"_" + str(self.args.number_of_diff_lrs) + self.args.update_rule 
-            + str(self.args.combine)+"bs"+ str(self.batch_size) +"c"+ str(self.args.c)+"beta"+ str(self.args.beta)+"only_grad_smooth"+ str(self.args.o_grad_smooth))
+            group = self.args.split_by + "_" + self.args.opts["opt"] + "_" + self.args.model +"_" + str(self.args.number_of_diff_lrs) + self.args.update_rule 
+            + str(self.args.combine)+"bs"+ str(self.batch_size) +"c"+ str(self.args.c))
         #wandb.watch(self)
         
         self.mode = "cls"
