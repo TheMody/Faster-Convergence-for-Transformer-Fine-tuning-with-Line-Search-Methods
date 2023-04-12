@@ -22,7 +22,7 @@ Dependencies:
 - `pip install tensorflow-datasets` for tensorflow datasets <3 
 - `pip install wandb` for optional logging <3
 - for easy replication use conda and environment.yml eg:
-$ conda env create -f environment.yml
+`$ conda env create -f environment.yml`
 
 
 
