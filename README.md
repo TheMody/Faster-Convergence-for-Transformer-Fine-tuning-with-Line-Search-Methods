@@ -82,7 +82,7 @@ and change the config.json file appropriately
 
 
 
-Please cite:
+##Please cite:
 Faster Convergence for Transformer Fine-tuning
 with Line Search Methods 
 from 
