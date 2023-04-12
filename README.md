@@ -11,7 +11,7 @@ Our work is publicly available as a python package, which provides a hyperparame
 
 ![Loss Curve](Plots/lossSST2small.png)
 
-## install
+## Install
 
 Dependencies:
 
@@ -26,7 +26,7 @@ $ conda env create -f environment.yml
 
 
 
-## use in own projects
+## Use in own projects
 
 The custom optimizer is in \sls\adam_sls.py and \sls\sls_base.py 
 Example Usage:
