@@ -17,6 +17,8 @@ Dependencies:
 
 - [pytorch](https://pytorch.org) <3
 - [numpy](https://numpy.org/install/) <3
+
+for replication:
 - `pip install transformers` for huggingface transformers <3 
 - `pip install datasets` for huggingface datasets <3 
 - `pip install tensorflow-datasets` for tensorflow datasets <3 
