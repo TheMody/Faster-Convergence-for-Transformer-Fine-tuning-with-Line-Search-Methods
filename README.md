@@ -21,24 +21,10 @@ Dependencies:
 - `pip install datasets` for huggingface datasets <3 
 - `pip install tensorflow-datasets` for tensorflow datasets <3 
 - `pip install wandb` for optional logging <3
-- for easy replication use conda and environment.yml
+- for easy replication use conda and environment.yml eg:
+$ conda env create -f environment.yml
 
 
-## Replicating Results
-For replicating the main Results of the Paper run:
-
-```
-$ python run_multiple.py
-```
-
-
-For replicating specific runs or trying out different hyperparameters use:
-
-```
-$ python main.py 
-```
-
-and change the config.json file appropriately
 
 ## use in own projects
 
@@ -49,11 +35,11 @@ Example Usage:
 from sls.adam_sls import AdamSLS
 optimizer = AdamSLS([model.parameters()])
 ```
-For better performance(not in this paper) use:
+For step size smoothing (not described in the original paper, but performs better) use::
 ```
 optimizer = AdamSLS([model.parameters()], smooth = True, c = 0.5)
 ```
-For splitting your network use:
+For splitting the learning rates in your network use:
 ```
 optimizer = AdamSLS([parameterlistA, parameterlistB, ... etc], smooth = True, c = 0.5)
 ```
@@ -73,7 +59,28 @@ closure = lambda : criterion(model(batch_x), batch_y)
 optimizer.zero_grad()
 loss = optimizer.step(closure = closure)
 ```
+
+This code change is necessary since, the optimizers needs to perform additional forward passes and thus needs to have the forward pass encapsulated in a function.
 see embedder.py in the fit() method for more details
+
+
+## Replicating Results
+For replicating the main Results of the Paper run:
+
+```
+$ python run_multiple.py
+```
+
+
+For replicating specific runs or trying out different hyperparameters use:
+
+```
+$ python main.py 
+```
+
+and change the config.json file appropriately
+
+
 
 Please cite:
 Faster Convergence for Transformer Fine-tuning
