@@ -92,4 +92,4 @@ Philip Kenneweg,
 Leonardo Galli,
 Tristan Kenneweg,
 Barbara Hammer
-To be published in IJCNN 2023
+published in IJCNN 2023
