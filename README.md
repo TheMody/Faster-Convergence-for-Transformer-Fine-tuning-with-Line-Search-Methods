@@ -2,6 +2,9 @@
 
 The Repository to the Paper Faster Convergence for Transformer Fine-tuning with Line Search Methods
 
+More recent implementation at:
+
+https://github.com/TheMody/No-learning-rates-needed-Introducing-SALSA-Stable-Armijo-Line-Search-Adaptation
 ## Abstract
 
 Recent works have shown that line search methods greatly increase performance of traditional stochastic gradient descent methods on a variety of datasets and architectures. In this work we succeed in extending line search methods to the novel and highly popular Transformer architecture and dataset domains in natural language processing. 
